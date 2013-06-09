@@ -1,6 +1,10 @@
 set nu
 syntax on
 
+
+" コードを整形する
+nnoremap <F2> gg=G
+
 " - Ruby
 " http://blog.livedoor.jp/sasata299/archives/51179057.html
 autocmd FileType ruby :map <C-n> <ESC>:!ruby -cW %<CR>
