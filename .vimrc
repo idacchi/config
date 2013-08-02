@@ -1,9 +1,10 @@
 set nu
 syntax on
 
-
 " コードを整形する
 nnoremap <F2> gg=G
+set tabstop=2
+set shiftwidth=2
 
 " - Ruby
 " http://blog.livedoor.jp/sasata299/archives/51179057.html
