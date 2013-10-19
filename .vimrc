@@ -1,5 +1,7 @@
 set nu
 syntax on
+" 0 0x 0X はじまりの数値も10進数としてインクリメントできるように
+set nrformats=
 
 " コードを整形する
 nnoremap <F2> gg=G
