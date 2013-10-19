@@ -10,18 +10,27 @@ set shiftwidth=2
 " http://blog.livedoor.jp/sasata299/archives/51179057.html
 autocmd FileType ruby :map <C-n> <ESC>:!ruby -cW %<CR>
 autocmd FileType ruby :map <C-e> <ESC>:!ruby %<CR>
+autocmd FileType text :map <C-s> <ESC>:!make html %<CR>
 
 " - Vundle
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" --------------------------------------
 " Vundleで管理するプラグインを書いていく
+" --------------------------------------
 Bundle 'gmarik/vundle'
 Bundle 'Shougo/neocomplcache'
 Bundle "vim-ruby/vim-ruby"
+Bundle 'Shougo/unite.vim'
+"
+" コメントアウト Ctrl + _
+Bundle 'tomtom/tcomment_vim'
 
 filetype plugin indent on
+"filetype plugin on
+"filetype on
 
 
 
@@ -29,6 +38,36 @@ filetype plugin indent on
 "" neocomplcache & neosnippet
 ""
 let g:neocomplcache_enable_at_startup = 1
+
+
+"uniteの設定
+""" unite.vim
+" 入力モードで開始する
+" let g:unite_enable_start_insert=1
+" バッファ一覧
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+" ファイル一覧
+nnoremap <silent> ,uf :<C-u>Unite file<CR>
+" レジスタ一覧
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+" 最近使用したファイル一覧
+nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
+" 常用セット
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+" 全部乗せ
+nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+
+" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+" au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+" au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+let g:unite_enable_split_vertically = 1
+let g:unite_winwidth = 40
+" ESCキーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 
 "colorscheme molokai
@@ -56,3 +95,5 @@ let g:neocomplcache_enable_at_startup = 1
 "nmap <silent> <F6> :VersDiff +<CR>
 "<Leader>vqでVersDiffから抜ける
 "nmap <silent> <Leader>vq :VersDiff -c<CR>
+
+
