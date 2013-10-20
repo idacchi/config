@@ -71,6 +71,17 @@ let g:unite_winwidth = 40
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
+" 行末の空白文字を可視化
+augroup HighlightTrailingSpaces
+  autocmd!
+  autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
+  autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
+augroup END
+
+"statusline設定
+set laststatus=2
+set statusline=%y%<%t\ %m%r%h%w%=%{'['.(&fenc!=''?&fenc:&enc).'/'.&ff.']'}[%l/%L,%c]%V%6P
+
 
 "colorscheme molokai
 
