@@ -1,12 +1,16 @@
-set nu
+" set nu
 syntax on
 " 0 0x 0X はじまりの数値も10進数としてインクリメントできるように
 set nrformats=
 
 " コードを整形する
-nnoremap <F2> gg=G
+nnoremap <F2> gg=G :%s/\t/  /g<CR>
 set tabstop=2
 set shiftwidth=2
+
+" 画面分割
+nnoremap <F9> :sp <CR>
+nnoremap <F10> :vs <CR>
 
 " - Ruby
 " http://blog.livedoor.jp/sasata299/archives/51179057.html
